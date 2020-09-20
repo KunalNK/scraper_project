@@ -1,0 +1,31 @@
+---
+  # ansible-playbook scraper.yml
+  - name: run tasks on all hosts
+    hosts: "*"
+    become: True
+    tasks:
+
+      - name: Copy file with owner and permissions
+        copy:
+            src: /home/kkunal/myansible/git.sh
+            dest: /home/ec2-user
+            owner: root
+            mode: '0644'
+      
+      - name: Install python3 & git package
+        yum:
+          name:
+            - python3
+            - git
+          state: present
+      
+      - name: Install requests & beautifulsoup using pip3
+        pip:
+          name:
+            - requests
+            - beautifulsoup4
+          executable: pip3
+
+
+      - name: Run the script command
+        script: git.sh
