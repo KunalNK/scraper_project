@@ -11,6 +11,13 @@
             dest: /home/ec2-user
             owner: root
             mode: '0644'
+
+
+      - name: Clone github repository
+        git:
+         repo: 'https://github.com/KunalNK/my_weather_scraper.git'
+         dest: /home/ec2-user/myscraper_project
+         update: no
       
       - name: Install python3 & git package
         yum:
