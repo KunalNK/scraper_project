@@ -5,26 +5,20 @@
     become: True
     tasks:
 
-      - name: Copy file with owner and permissions
-        copy:
-            src: /home/kkunal/myansible/git.sh
-            dest: /home/ec2-user
-            owner: root
-            mode: '0644'
-
-
-      - name: Clone github repository
-        git:
-         repo: 'https://github.com/KunalNK/my_weather_scraper.git'
-         dest: /home/ec2-user/myscraper_project
-         update: no
-      
+            
       - name: Install python3 & git package
         yum:
           name:
             - python3
             - git
           state: present
+
+      - name: Clone github repository
+        git:
+         repo: 'https://github.com/KunalNK/my_weather_scraper.git'
+         dest: /home/ec2-user/myscraper_project
+         update: no
+
       
       - name: Install requests & beautifulsoup using pip3
         pip:
@@ -35,4 +29,5 @@
 
 
       - name: Run the script command
-        script: git.sh
+        shell: python3 /home/ec2-user/myscraper_project/weather.py
+
