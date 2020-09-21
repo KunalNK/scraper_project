@@ -30,4 +30,3 @@
 
       - name: Run the script command
         shell: python3 /home/ec2-user/myscraper_project/weather.py
-
