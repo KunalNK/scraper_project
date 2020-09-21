@@ -1,11 +1,10 @@
 ---
   # ansible-playbook scraper.yml
   - name: run tasks on all hosts
+    gather_facts: no
     hosts: "*"
     become: True
-    tasks:
-
-            
+    tasks:    
       - name: Install python3 & git package
         yum:
           name:
@@ -19,14 +18,12 @@
          dest: /home/ec2-user/myscraper_project
          update: no
 
-      
       - name: Install requests & beautifulsoup using pip3
         pip:
           name:
             - requests
             - beautifulsoup4
           executable: pip3
-
 
       - name: Run the script command
         shell: python3 /home/ec2-user/myscraper_project/weather.py
