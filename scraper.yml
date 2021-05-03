@@ -38,7 +38,7 @@
         aws_s3:
           bucket: mybucketkk07
           object: weather.csv
-          src: /home/ec2-user/weather.csv
+          src: /home/ec2-user/myscraper_project/weather.csv
           mode: put
           permission: public-read
           
