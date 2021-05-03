@@ -28,28 +28,4 @@
       - name: Run the script command
         shell: python3 /home/ec2-user/myscraper_project/weather.py
         
-      - name: Create an empty bucket
-        aws_s3:
-          bucket: mybucketkk07
-          mode: create
-          permission: public-read-write
-          
-      - name: Put file into newly creates S3 bucket
-        aws_s3:
-          bucket: mybucketkk07
-          object: weather.csv
-          src: /home/ec2-user/myscraper_project/weather.csv
-          mode: put
-          permission: public-read
-          
-          
-      - name: Get the url of the object
-        aws_s3:
-          bucket: mybucketkk07
-          object: weather.csv
-          expiration: 10800
-          mode: geturl
-        register: geturl_result
-
-      - name: Print object url
-        debug: var=geturl_result
+     
