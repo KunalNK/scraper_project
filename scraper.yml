@@ -1,7 +1,8 @@
 ---
   # ansible-playbook scraper.yml
   - name: run tasks on all hosts
-    gather_localhost
+    hosts: webservers
+    gather_facts: no
     become: True
     tasks:    
       - name: Install python3 & git package
